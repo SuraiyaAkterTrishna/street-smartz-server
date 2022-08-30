@@ -17,14 +17,14 @@ async function run(){
         await client.connect();
         const itemsCollection = client.db('street-smartz').collection('items');
 
-        // create item
+        // create inventory
         app.post('/inventory', async (req, res)=>{
           const addItem = req.body;
           const result = await itemsCollection.insertOne(addItem);
           res.send(result);
       });
 
-        // get item
+        // get inventory
         app.get('/inventory',async(req,res)=>{
             const query = {};
             const cursor = itemsCollection.find(query);
@@ -32,7 +32,7 @@ async function run(){
             res.send(items);
         });
 
-        // get single item
+        // get single inventory
         app.get('/inventory/:id', async(req, res) =>{
           const id = req.params.id;
           const query = {_id: ObjectId(id)};
@@ -40,7 +40,7 @@ async function run(){
           res.send(result);
       });
 
-      // update item
+      // update inventory
       app.put('/inventory/:id', async(req, res) =>{
         const id = req.params.id;
         const updateItem = req.body;
@@ -62,7 +62,7 @@ async function run(){
         res.send(result);
     });
 
-    // delete item
+    // delete inventory
     app.delete('/inventory/:id', async(req, res) =>{
       const id = req.params.id;
       const query = {_id: ObjectId(id)};
@@ -70,7 +70,7 @@ async function run(){
       res.send(result);
     });
 
-    // item collection api
+    // inventory collection api
     app.get('/my-inventory/', async(req, res)=>{
       const email = req.query.email;
       const query = {email: email};
