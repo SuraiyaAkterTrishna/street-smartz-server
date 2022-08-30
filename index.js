@@ -24,6 +24,14 @@ async function run(){
           res.send(result);
       });
 
+        // get inventory
+        app.get('/inventory',async(req,res)=>{
+            const query = {};
+            const cursor = itemsCollection.find(query);
+            const items = await cursor.toArray();
+            res.send(items);
+        });
+
         
 
     }
