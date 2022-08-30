@@ -17,6 +17,13 @@ async function run(){
         await client.connect();
         const itemsCollection = client.db('street-smartz').collection('items');
 
+        // create inventory
+        app.post('/inventory', async (req, res)=>{
+          const addItem = req.body;
+          const result = await itemsCollection.insertOne(addItem);
+          res.send(result);
+      });
+
         
 
     }
