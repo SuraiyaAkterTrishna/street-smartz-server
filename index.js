@@ -35,7 +35,7 @@ async function run(){
         const itemsCollection = client.db('street-smartz').collection('items');
         const userCollection = client.db('street-smartz').collection('users');
 
-        // create inventory
+        // create inventory on database
         app.post('/inventory', async (req, res)=>{
           const addItem = req.body;
           const result = await itemsCollection.insertOne(addItem);
